@@ -14,11 +14,11 @@ contract HDDPresale is Ownable, ReentrancyGuard {
     uint8 public constant BUYING_TOKEN_DECIMAL = 6;
     uint8 public constant PRICE_DECIMAL = 10;
 
-    uint256 public constant HARD_CAP = 1_000 * 10**HDD_DECIMAL; // hardcap 500,000 HDD
+    uint256 public constant HARD_CAP = 500_000 * 10 ** HDD_DECIMAL; // hardcap 500,000 HDD
 
     uint256 public priceToken = 5; // 0.5 USDC
-    uint256 public minDepositAmount = 50 * 10**BUYING_TOKEN_DECIMAL; // min: 50 USDC
-    uint256 public maxDepositAmount = 2000 * 10**BUYING_TOKEN_DECIMAL; // max: 2,000 USDC
+    uint256 public minDepositAmount = 50 * 10 ** BUYING_TOKEN_DECIMAL; // min: 50 USDC
+    uint256 public maxDepositAmount = 2000 * 10 ** BUYING_TOKEN_DECIMAL; // max: 2,000 USDC
     uint256 public startTime;
     uint256 public endTime;
 
@@ -58,7 +58,7 @@ contract HDDPresale is Ownable, ReentrancyGuard {
         );
 
         uint256 tokenQuantity = ((_amount / priceToken) * PRICE_DECIMAL) *
-            10**(HDD_DECIMAL - BUYING_TOKEN_DECIMAL);
+            10 ** (HDD_DECIMAL - BUYING_TOKEN_DECIMAL);
         require(
             totalTokenSold + tokenQuantity <= HARD_CAP,
             "Hard Cap is reached"
@@ -167,10 +167,10 @@ contract HDDPresale is Ownable, ReentrancyGuard {
         endTime = _endTime;
     }
 
-    function setSaleTime(uint256 _startTime, uint256 _endTime)
-        external
-        onlyOwner
-    {
+    function setSaleTime(
+        uint256 _startTime,
+        uint256 _endTime
+    ) external onlyOwner {
         require(_startTime < _endTime, "Time invalid");
         startTime = _startTime;
         endTime = _endTime;
@@ -179,13 +179,7 @@ contract HDDPresale is Ownable, ReentrancyGuard {
     function getSaleInfo()
         public
         view
-        returns (
-            uint256,
-            uint256,
-            uint256,
-            uint256,
-            uint256
-        )
+        returns (uint256, uint256, uint256, uint256, uint256)
     {
         return (
             priceToken,
