@@ -14,7 +14,7 @@ contract HDDPresale is Ownable, ReentrancyGuard {
     uint8 public constant BUYING_TOKEN_DECIMAL = 6;
     uint8 public constant PRICE_DECIMAL = 10;
 
-    uint256 public constant HARD_CAP = 380_000 * 10 ** HDD_DECIMAL; // hardcap 500,000 HDD
+    uint256 public constant HARD_CAP = 380_000 * 10 ** HDD_DECIMAL; // hardcap 380,000 HDD
 
     uint256 public priceToken = 5; // 0.5 USDC
     uint256 public minDepositAmount = 50 * 10 ** BUYING_TOKEN_DECIMAL; // min: 50 USDC
